@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/pokeball.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts.css">
+    <script src="script.js"></script>
+    <script src="templates.js"></script>
+    <title>Pokédex</title>
+</head>
+
+<body onload="loadPokemon()">
+
+    <header>
+        <nav class="nav-header">
+            <div class="header-title">
+                <img class="pokeball" src="./img/pokeball.png">
+                <h1>Pokédex</h1>
+            </div>
+            <input class="input-field" type="text" id="inputfield" onkeyup="searchPokemon()" aria-label="Search"
+                autocomplete="off" placeholder="Search Pokémon by name or ID..">
+        </nav>
+    </header>
+
+    <div class="single-pokemon d-none">
+        <div class="single-poke-top">
+            <div class="single-poke-close">
+                <img src="./img/close.png">
+            </div>
+            <h1 id="pokemon-name"></h1>
+        </div>
+        <div class="poke-info-container">
+            <div class="img-container">
+                <img id="pokemon-img">
+            </div>
+        </div>
+    </div>
+
+    <div id="allpokemon"></div>
+</body>
+
+</html>
