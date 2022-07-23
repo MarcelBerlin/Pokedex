@@ -20,6 +20,7 @@ async function renderPokemonCard(currentPokemon, i) {
     let pokeCard = document.getElementById('allpokemon');
     pokeCard.innerHTML += pokeCards(i, pokemonName, currentPokemon, pokeImg);
     loadPokeClasses(i);
+    
 }
 
 
@@ -35,10 +36,24 @@ function loadPokeClasses(i) {
     }
 }
 
+function showPokemonDetails() {
+    let showPokemon = document.getElementById('singlepokemon');
+    let pokeImg = currentPokemon['sprites']['other']['official-artwork']['front_default'];
+    document.getElementById('allpokemon').classList.add('hidden-bg');
+    for (let i = 1; i < currentPokemon['stats'].length; i++) {
+        showPokemon.innerHTML += pokeInfo(i, pokeImg);
+    }
+    
+}
+
+function pokeStats () {
+
+
+}
+
 function searchPokemon() {
-    const search = document.getElementById("inputfield").value.toLowerCase();
-    console.log(search);
-    for (let i = 1; i < pok; i++) {
+    const search = document.getElementById("inputfield").value.toLowerCase();   
+    for (let i = 1; i < pokemonNumbers; i++) {
         let pokemonCard = document.getElementById(`pokemonCard${i}`);
         let pokemonName = document.getElementById(`pokemonName${i}`).innerHTML;
         let pokemonId = document.getElementById(`pokemonId${i}`).innerHTML;
