@@ -1,5 +1,7 @@
 body {
-    background-color: rgb(235, 235, 235);
+    background-image: url(./img/pokemon-bg.jpg);
+    background-position: 40% 0%;   
+    background-attachment: fixed;
     margin: 0%;
     font-family: 'Grandstander', sans-serif;
     font-weight: 600;
@@ -21,6 +23,10 @@ h1 {
     display: none;
 }
 
+.block {
+    display: block;
+}
+
 .hidden-bg {
     filter: blur(4px);  
     opacity: 0.6;    
@@ -28,10 +34,11 @@ h1 {
 
 .nav-header {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.175);
+    justify-content: space-around;      
+    background-color: rgba(255, 255, 255, 0.3);
 }
+
 
 .header-title {
     display: flex;
@@ -54,7 +61,7 @@ h1 {
     width: 500px;
     height: 40px;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px;
     outline: none;
 }
 
@@ -79,12 +86,14 @@ h1 {
     padding: 20px;
     margin: 8px;
     box-shadow: -2px 3px 9px 2px rgba(0, 0, 0, 0.1);
-    transition: all 200ms ease-in-out;
+    transition: all 100ms ease-in-out;
 }
 
 .pokemon-card:hover {
+    z-index: 10;
     cursor: pointer;
-    box-shadow: -3px 18px 20px 0px rgba(99,89,99,1);
+    box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.3);
+    transform: scale(1.05);
 }
 
 .pokemon-card img {
@@ -140,11 +149,11 @@ h1 {
     border-radius: 40px;
 }
 
-.single-head-container {
+.singlePoke-head {
     margin-top: 20px;
 }
 
-.single-poke-top {
+.singlePoke-top {
     height: 50%;
     padding: 24px;
     border-top-left-radius: 40px;
@@ -154,7 +163,8 @@ h1 {
     flex-direction: column;
 }
 
-.single-poke-close {
+.singlePoke-close {
+    cursor: pointer;
     width: 45px;
     display: flex;
     justify-content: center;
@@ -162,32 +172,26 @@ h1 {
     cursor: pointer;
 }
 
-.single-poke-close img {
+.singlePoke-close img {
     height: 25px;
     width: 25px;
     object-fit: cover;
 }
 
-.single-poke-close img:hover {
+.singlePoke-close img:hover {
     background-color: rgba(255, 255, 255, 0.175);
     border-radius: 100%;
+
 }
 
-.single-img-container {
+.singlePoke-img {
     position: relative;
     height: 200px;
     top: 50px;
 }
 
-.single-img {
-    position: absolute;
-    top: -240px;
-    left: 15px;
-    height: 300px;
-    width: auto;
-}
 
-.single-poke-stats {
+.singlePoke-stats {
     position: absolute;
     bottom: 5%;
 }

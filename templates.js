@@ -1,6 +1,6 @@
 function pokeCards(i, pokemonName, currentPokemon, pokeImg) {
     return /*html*/ `      
-    <div class="pokemon-card" id="pokemonCard${i}" onclick="showPokemonDetails()">
+    <div class="pokemon-card" id="pokemonCard${i}" onclick="showPokemonDetails(${i})">
         <div class="info-top">
             <h2 class="info-top-id" id="pokemonName${i}">${pokemonName}</h2> 
             <i><span class="info-top-id" id="pokemonId${i}">#00${currentPokemon['id']}</span></i>
@@ -14,50 +14,47 @@ function pokeCards(i, pokemonName, currentPokemon, pokeImg) {
 }
 
 
-function pokeInfo(i, pokeImg) {
+function pokeInfo(i) {
+    let statname = currentPokemon['stats'][i]['stat']['name'];
+    let basestat = currentPokemon['stats'][i]['base_stat'];
     return /*html*/ `
-    <div class="single-pokemon" id="singleContainer${i}">
-       <div id="single-head-container">
-        <div class="single-poke-close">
-            <img src="./img/close.png">
-        </div>
-            <div class="single-poke-top">
-    	        <h2 id="pokemonName${i}"></h2>
-                <span id="pokemonID${i}"></span>
-            </div>
-            <div class="single-img-container">
-                <img class="single-img" src="${pokeImg}">
-            </div>
-        </div> 
-        <div class="single-poke-stats">
+    
+    <div id="stats${i}" class="single-poke-stats">
         <h2>Base Stats</h2>
-            <table>
-                <tr>
-                    <td>HP</td>
-                    <td class="stat-value" id="hp${i}"></td>
-                </tr>
-                <tr>
-                    <td>Attack</td>
-                    <td class="stat-value" id="attack${i}"></td>
-                </tr>
-                <tr>
-                    <td>Defense</td>
-                    <td class="stat-value" id="defense${i}"></td>
-                </tr>
-                <tr>
-                    <td>Special-Attack</td>
-                    <td class="stat-value" id="special-attack${i}"></td>             
-               </tr>
-                <tr>
-                    <td>Special-Defense</td>
-                    <td class="stat-value" id="special-defense${i}"></td>
-                </tr>
-                <tr>
-                    <td>Speed</td>
-                    <td class="stat-value" id="speed${i}"></td>
-                </tr>
-            </table>
+            <div></div>
         </div>
     </div>    
     `;
+}
+
+
+function showSinglePokemon(i) {
+    let url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i}.png`;
+
+    return /*html*/ `
+    <div id="singlePoke-before"></div>
+    <div id="singlePoke-after"></div>
+    <div class="singlePoke-top">
+        <div class="singlePoke-close">
+            <img src="./img/close.png" onclick="closeSingle()">
+        </div>
+        <div class="singlePoke-head">
+            <div class="singlePoke-head-left">
+                <h1 id="pokemonName"></h1>
+                <div id="singlePoke-classes"></div>
+            </div>
+            <div class="singlePoke-head-right">
+                <p id="pokemonID"></p>
+            </div>
+        </div>
+    </div>
+    <div class="singlePoke-bottom">
+        <div class="singlePoke-img">
+            <img id="pokemonImage" src="${url}">
+        </div>
+        <div class="singlePoke-stats">
+            <div id="pokemonStats${i}"></div>
+        </div>
+    </div>    
+    `
 }
