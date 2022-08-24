@@ -1,10 +1,10 @@
 let currentPokemon;
-let startNumber = 1;
-let pokemonNumbers = 31;
+let offset = 1;
+let pokemonNumbers = 152;
 
 
 async function loadPokemon() {
-    for (let i = 1; i < pokemonNumbers; i++) {
+    for (let i = offset; i < pokemonNumbers; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
         let res = await fetch(url);
         currentPokemon = await res.json();
@@ -41,19 +41,45 @@ async function showPokemonDetails(i) {
     let response = await fetch(url);
     currentPokemon = await response.json();
     console.log(currentPokemon);
+    document.getElementById('allpokemon').classList.add('d-none');
     singlePokemonInfo(i);
-
 }
 
 
-async function singlePokemonInfo() {
-    let pokeName = firstLetter(currentPokemon['name']);
-    pokeName = document.getElementById('pokemonName').innerHTML;
-    document.getElementById('pokemonID').innerHTML = `#00${currentPokemon['id']}`;
-    document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
+async function singlePokemonInfo(i) {   
+    let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+    currentPokemon = await response.json();
     document.getElementById('singlepokemon').classList.remove('d-none');
-    document.getElementById(`pokemonCard${i}`).classList.add(`card-${pokeClass}`);
+    document.getElementById('allpokemon').classList.add('hidden-bg');    
+    linkPokeDetails(i); 
+    loadInfoDetails(i);
+    checkSlideNumber(i);   
+}
 
+
+function loadSinglePokeClasses(i) {
+    for (let c = 0; c < currentPokemon['types'].length; c++) {
+        let pokeClass = firstLetter(currentPokemon['types'][c]['type']['name']);
+        if (c == 0) {
+            document.getElementById(`singlePoke-classes${i}`).innerHTML += `<span class="single-card-class">${pokeClass}</span>`;
+            document.getElementById(`singleCard${i}`).classList.add(`card-${pokeClass}`);
+        } else {
+            document.getElementById(`singlePoke-classes${i}`).innerHTML += `<span class="single-card-class card-${pokeClass}">${pokeClass}</span>`;
+        }
+    }
+}
+
+
+
+function loadInfoDetails(i) {
+    let infoStats = document.getElementById(`pokemonStats${i}`);
+    infoStats.innerHTML = '';
+    let stats = currentPokemon['stats'];
+    for (let j = 0; j < stats.length; j++) {
+        let info = stats[j];
+        infoStats.innerHTML += pokeInfo(i, j, info);
+        loadProcessbarValue(i, j, info);
+    }    
 }
 
 
@@ -79,7 +105,40 @@ function searchPokemon(i) {
 }
 
 
+function linkPokeDetails(i) {
+    let singlePokeName = firstLetter(currentPokemon['name']);
+    let pokeID = currentPokemon['id'];
+    let pokeImg = currentPokemon['sprites']['other']['official-artwork']['front_default'];
+    document.getElementById('singlepokemon').innerHTML = showSinglePokemon(i, singlePokeName, pokeID, pokeImg);
+    loadSinglePokeClasses(i);
+}
+
+
 function firstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+
+function loadProcessbarValue(i, j, info) {
+    document.getElementById(`processbarValue${i}${j}`).style.width = `${info['base_stat']}%`;
+}
+
+
+function slideDown(i) {
+    i--;
+    singlePokemonInfo(i);
+}
+
+function slideUp(i) {
+    i++;
+    singlePokemonInfo(i);
+}
+
+function checkSlideNumber(i) {
+    if (i == 1) {
+        document.getElementById('slideDown').disabled = true;
+        document.getElementById('slideDown').style.opacity = 0.25;
+    } else {
+        document.getElementById('slideDown').disabled = false;
+    }
+}

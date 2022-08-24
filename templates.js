@@ -14,47 +14,55 @@ function pokeCards(i, pokemonName, currentPokemon, pokeImg) {
 }
 
 
-function pokeInfo(i) {
-    let statname = currentPokemon['stats'][i]['stat']['name'];
-    let basestat = currentPokemon['stats'][i]['base_stat'];
+function pokeInfo(i, j, info) {
     return /*html*/ `
-    
-    <div id="stats${i}" class="single-poke-stats">
-        <h2>Base Stats</h2>
-            <div></div>
+   <div class="infoStats">
+        <div id="infoTitle"> ${info['stat']['name']}</div>
+
+        <div class="baseStat">
+            <div class="processbar">
+                <div id="processbarValue${i}${j}" class="processbarValue">
+                    <span>${info['base_stat']}</span>
+                </div>
+            </div>
         </div>
-    </div>    
+   </div>
+       
     `;
 }
 
 
-function showSinglePokemon(i) {
-    let url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i}.png`;
-
+function showSinglePokemon(i, singlePokeName, pokeID, pokeImg) {
     return /*html*/ `
-    <div id="singlePoke-before"></div>
-    <div id="singlePoke-after"></div>
-    <div class="singlePoke-top">
-        <div class="singlePoke-close">
-            <img src="./img/close.png" onclick="closeSingle()">
-        </div>
-        <div class="singlePoke-head">
-            <div class="singlePoke-head-left">
-                <h1 id="pokemonName"></h1>
-                <div id="singlePoke-classes"></div>
+    <div id="singleCard${i}" class="singleCard">
+        <div class="singlePoke-top">            
+            <div class="singlePoke-close">
+                <img src="./img/close.png" onclick="closeSingle()" title="close single view">
+                <div class="singlePoke-arrow" id="singlePoke-before">
+                    <img src="./img/arrowLeft.png" id="slideDown" onclick="slideDown(${i})" title="previous Pokemon">
+                </div>  
+                <div class="singlePoke-arrow" id="singlePoke-after">
+                    <img src="./img/arrowRight.png" onclick="slideUp(${i})" title="next Pokemon">
+                </div>
+            </div>                
+            <div class="singlePoke-head">
+                <div class="singlePoke-head-left">
+                    <h1 id="pokemonName">${singlePokeName}</h1>                    
+                </div>
+                <div class="singlePoke-head-right">
+                    <p id="pokemonID">${pokeID}</p>
+                </div>
+                <div id="singlePoke-classes${i}" class="types-container"></div>
+                <div class="singlePoke-img">
+                <img id="pokemonImage" src="${pokeImg}">
+                </div>
             </div>
-            <div class="singlePoke-head-right">
-                <p id="pokemonID"></p>
+        </div>
+        <div class="singlePoke-bottom">            
+            <div class="singlePoke-stats">
+                <div id="pokemonStats${i}"></div>
             </div>
-        </div>
-    </div>
-    <div class="singlePoke-bottom">
-        <div class="singlePoke-img">
-            <img id="pokemonImage" src="${url}">
-        </div>
-        <div class="singlePoke-stats">
-            <div id="pokemonStats${i}"></div>
-        </div>
-    </div>    
+        </div>  
+    </div>                      
     `
 }
