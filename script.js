@@ -1,15 +1,16 @@
+let allPokemon = [];
 let currentPokemon;
 let offset = 1;
-let pokemonNumbers = 152;
 
 
 async function loadPokemon() {
-    for (let i = offset; i < pokemonNumbers; i++) {
+    for (let i = offset; i < 152; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
         let res = await fetch(url);
         currentPokemon = await res.json();
         console.log(currentPokemon);
-        renderPokemonCard(currentPokemon, i);
+        allPokemon.push(currentPokemon);
+        await renderPokemonCard(currentPokemon, i);
     }
 }
 
@@ -42,7 +43,7 @@ async function showPokemonDetails(i) {
     currentPokemon = await response.json();
     console.log(currentPokemon);
     document.getElementById('allpokemon').classList.add('d-none');
-    singlePokemonInfo(i);
+    await singlePokemonInfo(i);
 }
 
 
@@ -89,19 +90,19 @@ function closeSingle() {
 }
 
 
-function searchPokemon(i) {
-    let search = document.getElementById('input').value;
-    let pokename = currentPokemon['name'].innerHTML;
-    let pokeId = currentPokemon['id'].innerHTML;
-    let pokecard = document.getElementById(`pokemonCards${i}`);
-    for (let i = 0; i < pokemonNumbers.length; i++) {     
-        if (!pokename.includes(search) || !pokeId.includes(search)) {
-            pokecard.classList.add('d-none');
-        } if (pokename.includes(search) || pokeId.includes(search)) {
-            pokecard.classList.add('block');
-        }        
-    }
-    renderPokemonCard(currentPokemon, i);    
+
+function searchPokemon() {
+    let input = document.getElementById('input').value;
+    let cardContent = document.getElementById('allpokemon');
+    cardContent.innerHTML = '';
+    for (let i = 0; i < currentPokemon.length; i++) {
+        let pokmonName = currentPokemon[i]['name'];
+        if (pokmonName.includes(input)) {
+            renderPokemonCard(currentPokemon, i)
+        } else {
+        cardContent.classList.add('d-none');
+        }
+    }   
 }
 
 

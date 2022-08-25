@@ -1,5 +1,5 @@
 function pokeCards(i, pokemonName, currentPokemon, pokeImg) {
-    return /*html*/ `      
+    return /*html*/ `    
     <div class="pokemon-card" id="pokemonCard${i}" onclick="showPokemonDetails(${i})">
         <div class="info-top">
             <h2 class="info-top-id" id="pokemonName${i}">${pokemonName}</h2> 
@@ -9,7 +9,8 @@ function pokeCards(i, pokemonName, currentPokemon, pokeImg) {
             <div class="types-container" id="classes${i}"></div>
         </div>
         <img src="${pokeImg}">        
-    </div>      
+    </div>  
+     
     `;
 }
 
@@ -34,6 +35,7 @@ function pokeInfo(i, j, info) {
 
 function showSinglePokemon(i, singlePokeName, pokeID, pokeImg) {
     return /*html*/ `
+    
     <div id="singleCard${i}" class="singleCard">
         <div class="singlePoke-top">            
             <div class="singlePoke-close">
@@ -63,6 +65,7 @@ function showSinglePokemon(i, singlePokeName, pokeID, pokeImg) {
                 <div id="pokemonStats${i}"></div>
             </div>
         </div>  
-    </div>                      
+    </div>    
+                    
     `
 }

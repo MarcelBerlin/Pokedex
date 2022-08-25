@@ -33,6 +33,10 @@ h1 {
     
 }
 
+.bg-while-single {
+    z-index: 50;
+}
+
 .nav-header {
     display: flex;
     align-items: center;
@@ -100,8 +104,8 @@ h1 {
 .pokemon-card img {
     position: absolute;
     bottom: 20px;
-    right: 20px;
-    width: 40%;
+    right: 5px;
+    width: 48%;
 }
 
 .pokemon-card-class {
@@ -161,9 +165,13 @@ h1 {
     border-radius: 40px;
 }
 
+.singleCardBg {
+    z-index: 50;
+    width: 100vw;
+    height: 100vh;
+}
+
 .singleCard {
-    height: 80%;
-    width: 550px;
     border-radius: 15px;
 }
 
@@ -222,7 +230,7 @@ h1 {
 
 
 .singlePoke-img img{
-    height: 335px;
+    height: 310px;
     width: auto;
 }
 
