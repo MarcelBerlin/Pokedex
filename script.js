@@ -92,12 +92,14 @@ function closeSingle() {
 
 
 function searchPokemon() {
-    let input = document.getElementById('input').value;
+    let input = document.getElementById('input').value; 
+    input = input.toLowerCase(); 
     let cardContent = document.getElementById('allpokemon');
     cardContent.innerHTML = '';
-    for (let i = 0; i < currentPokemon.length; i++) {
-        let pokmonName = currentPokemon[i]['name'];
-        if (pokmonName.includes(input)) {
+    for (let i = 0; i < allPokemon.length; i++) {        
+        currentPokemon = allPokemon[i]
+        let Name = allPokemon[i]['name']; 
+        if (Name.includes(input)) {
             renderPokemonCard(currentPokemon, i)
         } else {
         cardContent.classList.add('d-none');
