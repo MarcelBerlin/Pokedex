@@ -1,10 +1,10 @@
 let allPokemon = [];
 let currentPokemon;
 let offset = 1;
-
+let pokemonNumber = 21;
 
 async function loadPokemon() {
-    for (let i = offset; i < 152; i++) {
+    for (let i = offset; i < pokemonNumber; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
         let res = await fetch(url);
         currentPokemon = await res.json();
@@ -12,6 +12,13 @@ async function loadPokemon() {
         allPokemon.push(currentPokemon);
         await renderPokemonCard(currentPokemon, i);
     }
+}
+
+async function loadMorePokemon() {
+    pokemonNumber += 20;
+    offset += 20;
+    await loadPokemon();
+
 }
 
 
