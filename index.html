@@ -22,16 +22,17 @@
                 <h1>Pokédex</h1>
             </div>
             <input class="input-field" type="text" id="input" onkeyup="searchPokemon()" aria-label="Search"
-                autocomplete="off" placeholder="Search Pokémon by name or ID..">
+                autocomplete="off" placeholder="Search Pokémon by name..">
         </nav>
     </header>
 
     <div id="singlepokemon" class="single-pokemon d-none"></div>
-    
+
     <div id="allpokemon"></div>
 
-    <button onclick="loadMorePokemon()">Mehr Pokemon..</button>
-    
+    <div class="more-poke-button">
+        <button onclick="loadMorePokemon()">More pokemon</button>
+    </div>
 </body>
 
 </html>
