@@ -1,4 +1,4 @@
-@media(max-height: 750px) {
+@media(max-height: 800px) {
     .infoStats {
         padding-bottom: 10px;
     }
@@ -100,9 +100,6 @@
         height: 150px;
     }
 
-    .infoStats {
-        padding-bottom: 13px;
-    }
 }
 
 
