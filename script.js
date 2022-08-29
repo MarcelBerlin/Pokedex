@@ -105,7 +105,10 @@ function openSearchField() {
 
 function clearInput() {
     document.getElementById('inputfield').value = '';
-    
+    document.getElementById('allpokemon').innerHTML = '';
+    allPokemon = [];
+    offset = 1;    
+    loadPokemon();
 }
 
 
