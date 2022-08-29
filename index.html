@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/pokeball.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="media.css">
     <link rel="stylesheet" href="fonts.css">
     <script src="script.js"></script>
     <script src="templates.js"></script>
@@ -21,8 +22,13 @@
                 <img class="pokeball" src="./img/pokeball.png">
                 <h1>Pokédex</h1>
             </div>
-            <input class="input-field" type="text" id="input" onkeyup="searchPokemon()" aria-label="Search"
-                autocomplete="off" placeholder="Search Pokémon by name..">
+            <div class="search">
+                <div class="search-icon" id="search-icon" onclick="openSearchField()"></div>
+                <div class="input-field">
+                    <input type="text" placeholder="Search pokemon by name.." id="inputfield" onkeyup="searchPokemon()">
+                </div>
+                <span class="clear" onclick="clearInput()"></span>                
+            </div>
         </nav>
     </header>
 
@@ -30,7 +36,7 @@
 
     <div id="allpokemon"></div>
 
-    <div class="more-poke-button">
+    <div id="more-poke-button" class="more-poke-button">
         <button onclick="loadMorePokemon()">More pokemon</button>
     </div>
 </body>

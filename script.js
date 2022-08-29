@@ -92,21 +92,34 @@ function loadInfoDetails(i) {
 function closeSingle() {
     document.getElementById(`singlepokemon`).classList.add('d-none');
     document.getElementById('allpokemon').classList.remove('hidden-bg');
+    document.getElementById('more-poke-button').classList.remove('hidden-bg');
     document.getElementById('allpokemon').classList.remove('disable-div');
+    document.getElementById('more-poke-button').classList.remove('disable-div'); 
+}
+
+
+function openSearchField() {
+    let search = document.querySelector('.search');
+    search.classList.toggle('active');
+}    
+
+function clearInput() {
+    document.getElementById('inputfield').value = '';
+    
 }
 
 
 
 function searchPokemon() {
-    let input = document.getElementById('input').value; 
+    let input = document.getElementById('inputfield').value; 
     input = input.toLowerCase(); 
     let cardContent = document.getElementById('allpokemon');
     cardContent.innerHTML = '';
     for (let i = 0; i < allPokemon.length; i++) {        
-        currentPokemon = allPokemon[i]
+        currentPokemon = allPokemon[i];
         let Name = allPokemon[i]['name']; 
         if (Name.includes(input)) {
-            renderPokemonCard(currentPokemon, i)
+            renderPokemonCard(currentPokemon, i + 1)
         } else {
         cardContent.classList.add('d-none');
         }
@@ -156,5 +169,7 @@ function checkSlideNumber(i) {
 function disableEnableClasses() {
     document.getElementById('singlepokemon').classList.remove('d-none');
     document.getElementById('allpokemon').classList.add('hidden-bg');
-    document.getElementById('allpokemon').classList.add('disable-div');   
+    document.getElementById('more-poke-button').classList.add('hidden-bg');
+    document.getElementById('allpokemon').classList.add('disable-div');  
+    document.getElementById('more-poke-button').classList.add('disable-div'); 
 }
