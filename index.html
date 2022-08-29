@@ -17,7 +17,7 @@
 <body onload="loadPokemon()">
 
     <header>
-        <nav class="nav-header">
+        <nav class="nav-header" id="nav-header">
             <div class="header-title">
                 <img class="pokeball" src="./img/pokeball.png">
                 <h1>Pokédex</h1>
@@ -27,12 +27,14 @@
                 <div class="input-field">
                     <input type="text" placeholder="Search pokemon by name.." id="inputfield" onkeyup="searchPokemon()">
                 </div>
-                <span class="clear" title="clear input" onclick="clearInput()"></span>                
+                <span class="clear" title="clear input" onclick="clearInput()"></span>
             </div>
         </nav>
     </header>
 
-    <div id="singlepokemon" class="single-pokemon d-none"></div>
+    <div class="singlecontainer">
+        <div id="singlepokemon" class="single-pokemon d-none"></div>
+    </div>
 
     <div id="allpokemon"></div>
 

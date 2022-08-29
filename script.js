@@ -89,12 +89,25 @@ function loadInfoDetails(i) {
 }
 
 
+function disableEnableClasses() {
+    document.getElementById('singlepokemon').classList.remove('d-none');
+    document.getElementById('allpokemon').classList.add('hidden-bg');   
+    document.getElementById('allpokemon').classList.add('disable-div');  
+    document.getElementById('more-poke-button').classList.add('hidden-bg');
+    document.getElementById('more-poke-button').classList.add('disable-div'); 
+    document.getElementById('nav-header').classList.add('hidden-bg');
+    document.getElementById('nav-header').classList.add('disable-div');
+}
+
+
 function closeSingle() {
     document.getElementById(`singlepokemon`).classList.add('d-none');
-    document.getElementById('allpokemon').classList.remove('hidden-bg');
+    document.getElementById('allpokemon').classList.remove('hidden-bg');   
+    document.getElementById('allpokemon').classList.remove('disable-div');   
     document.getElementById('more-poke-button').classList.remove('hidden-bg');
-    document.getElementById('allpokemon').classList.remove('disable-div');
     document.getElementById('more-poke-button').classList.remove('disable-div'); 
+    document.getElementById('nav-header').classList.remove('hidden-bg');
+    document.getElementById('nav-header').classList.remove('disable-div');
 }
 
 
@@ -118,6 +131,11 @@ function searchPokemon() {
     input = input.toLowerCase(); 
     let cardContent = document.getElementById('allpokemon');
     cardContent.innerHTML = '';
+    filterByName(input, cardContent);
+}
+
+
+function filterByName(input, cardContent) {
     for (let i = 0; i < allPokemon.length; i++) {        
         currentPokemon = allPokemon[i];
         let Name = allPokemon[i]['name']; 
@@ -169,10 +187,3 @@ function checkSlideNumber(i) {
 }
 
 
-function disableEnableClasses() {
-    document.getElementById('singlepokemon').classList.remove('d-none');
-    document.getElementById('allpokemon').classList.add('hidden-bg');
-    document.getElementById('more-poke-button').classList.add('hidden-bg');
-    document.getElementById('allpokemon').classList.add('disable-div');  
-    document.getElementById('more-poke-button').classList.add('disable-div'); 
-}

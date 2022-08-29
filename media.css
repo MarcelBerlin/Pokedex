@@ -1,5 +1,124 @@
-@media(max-width: 1000px) {
+@media(max-width: 650px) {
 
-    
+    .nav-header {
+        flex-direction: column;
+    }
+
+    .search {
+        margin-bottom: 3%;
+    }
+
+    .single-pokemon {
+        top: 12%;
+        width: 500px;
+    }
+}
+
+
+@media(max-width: 550px) {
+
+    .single-pokemon {
+        width: 450px;
+    }
+
+    .singlePoke-img {
+        height: 200px;
+        top: 10px;
+        right: 0px;
+    }
+
+    .singlePoke-img img {
+        height: 240px;
+    }
+
+    .singlePoke-stats {
+        width: 88%;
+    }
+}
+
+
+@media(max-width: 480px) {
+
+    .search.active {
+        width: 300px;
+        
+    }
+
+    .single-pokemon {
+        width: 400px;
+    }
+
+    .singlePoke-img {
+        height: 200px;
+        top: 40px;
+    }
+
+    .singlePoke-img img {
+        height: 200px;
+    }
+
+    .singlePoke-stats {
+        width: 86%;
+    }
+}
+
+
+@media(max-width: 420px) {
+
+    .single-pokemon {
+        width: 360px;
+        top: 6%;
+    }
 
 }
+
+
+@media(max-width: 380px) {
+    .single-pokemon {
+        width: 335px;
+    }
+
+    .singlePoke-img {        
+        top: 70px;
+    }
+
+    .singlePoke-img img {
+        height: 150px;
+    }
+}
+
+
+@media(max-width: 350px) {
+
+    .search.active {
+        width: 250px;
+        
+    }
+
+    .single-pokemon {
+        width: 300px;
+    }
+
+    .singlePoke-stats {
+        width: 83%;
+    }
+
+}
+
+
+@media(max-width: 310px) {
+
+    .header-title {
+        width: 275px;
+    }
+
+    .single-pokemon {
+        width: 260px;
+    }
+
+    .singlePoke-img {        
+        top: 70px;
+        right: -8px;
+    }    
+}
+
