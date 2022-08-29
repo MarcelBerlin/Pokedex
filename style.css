@@ -189,7 +189,7 @@ h1 {
 
 .pokemon-card {
     cursor: pointer;
-    width: 250px;
+    width: 280px;
     height: 20vh;
     border: 1px solid lightgray;
     border-radius: 20px;
