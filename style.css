@@ -23,14 +23,18 @@ h1 {
     display: none;
 }
 
+.disable-div {
+    pointer-events: none;
+}
+
 .block {
-    display: block;
+    display: flex;
 }
 
 .hidden-bg {
     filter: blur(4px);  
     opacity: 0.6;  
-    
+   
 }
 
 .bg-while-single {
@@ -78,6 +82,7 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
 }
+
 
 .pokemon-card {
     cursor: pointer;
@@ -253,12 +258,12 @@ h1 {
     position: absolute;
     height: 200px;
     top: -10px;
-    right: -15px;
+    right: 0px;
 }
 
 
 .singlePoke-img img{
-    height: 310px;
+    height: 285px;
     width: auto;
 }
 

@@ -18,7 +18,6 @@ async function loadMorePokemon() {
     pokemonNumber += 20;
     offset += 20;
     await loadPokemon();
-
 }
 
 
@@ -57,8 +56,7 @@ async function showPokemonDetails(i) {
 async function singlePokemonInfo(i) {   
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
     currentPokemon = await response.json();
-    document.getElementById('singlepokemon').classList.remove('d-none');
-    document.getElementById('allpokemon').classList.add('hidden-bg');    
+    disableEnableClasses();
     linkPokeDetails(i); 
     loadInfoDetails(i);
     checkSlideNumber(i);   
@@ -94,6 +92,7 @@ function loadInfoDetails(i) {
 function closeSingle() {
     document.getElementById(`singlepokemon`).classList.add('d-none');
     document.getElementById('allpokemon').classList.remove('hidden-bg');
+    document.getElementById('allpokemon').classList.remove('disable-div');
 }
 
 
@@ -151,4 +150,11 @@ function checkSlideNumber(i) {
     } else {
         document.getElementById('slideDown').disabled = false;
     }
+}
+
+
+function disableEnableClasses() {
+    document.getElementById('singlepokemon').classList.remove('d-none');
+    document.getElementById('allpokemon').classList.add('hidden-bg');
+    document.getElementById('allpokemon').classList.add('disable-div');   
 }
