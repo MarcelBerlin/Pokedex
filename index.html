@@ -23,11 +23,11 @@
                 <h1>Pokédex</h1>
             </div>
             <div class="search">
-                <div class="search-icon" id="search-icon" onclick="openSearchField()"></div>
+                <div class="search-icon" id="search-icon" title="open search" onclick="openSearchField()"></div>
                 <div class="input-field">
                     <input type="text" placeholder="Search pokemon by name.." id="inputfield" onkeyup="searchPokemon()">
                 </div>
-                <span class="clear" onclick="clearInput()"></span>                
+                <span class="clear" title="clear input" onclick="clearInput()"></span>                
             </div>
         </nav>
     </header>
@@ -37,7 +37,7 @@
     <div id="allpokemon"></div>
 
     <div id="more-poke-button" class="more-poke-button">
-        <button onclick="loadMorePokemon()">More pokemon</button>
+        <button onclick="load20MorePokemon()">More pokemon</button>
     </div>
 </body>
 

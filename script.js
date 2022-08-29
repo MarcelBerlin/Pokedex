@@ -14,7 +14,7 @@ async function loadPokemon() {
     }
 }
 
-async function loadMorePokemon() {
+async function load20MorePokemon() {
     pokemonNumber += 20;
     offset += 20;
     await loadPokemon();
