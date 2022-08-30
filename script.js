@@ -1,7 +1,7 @@
 let allPokemon = [];
 let currentPokemon;
 let offset = 1;
-let pokemonLimit = 21;
+let pokemonLimit = 31;
 
 
 async function loadPokemon() {
@@ -19,7 +19,7 @@ async function loadPokemon() {
 
 const ScrollForMorePokemon = async () => {
     if (window.scrollY + window.innerHeight >= document.body.clientHeight) {
-        for (let i = pokemonLimit; i < pokemonLimit + 20; i++) {
+        for (let i = pokemonLimit; i < pokemonLimit + 30; i++) {
             let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
             let res = await fetch(url);
             currentPokemon = await res.json();
@@ -27,10 +27,10 @@ const ScrollForMorePokemon = async () => {
             allPokemon.push(currentPokemon);
             await renderPokemonCard(currentPokemon, i);
         }
-        pokemonLimit += 20;
-        offset += 20;
+        pokemonLimit += 30;
+        offset += 30;
     }      
-};
+}
 
 
 async function renderPokemonCard(currentPokemon, i) {
