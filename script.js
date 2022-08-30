@@ -1,7 +1,8 @@
 let allPokemon = [];
 let currentPokemon;
 let offset = 1;
-let pokemonNumber = 21;
+let pokemonNumber = 31;
+let maxPokemonNumber = 990;
 
 async function loadPokemon() {
     for (let i = offset; i < pokemonNumber; i++) {
@@ -14,9 +15,9 @@ async function loadPokemon() {
     }
 }
 
-async function load20MorePokemon() {
-    pokemonNumber += 20;
-    offset += 20;
+async function load30MorePokemon() {
+    pokemonNumber += 30;
+    offset += 30;
     await loadPokemon();
 }
 
@@ -56,7 +57,7 @@ async function showPokemonDetails(i) {
 async function singlePokemonInfo(i) {   
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
     currentPokemon = await response.json();
-    disableEnableClasses();
+    disableAndHide();
     linkPokeDetails(i); 
     loadInfoDetails(i);
     checkSlideNumber(i);   
@@ -89,24 +90,40 @@ function loadInfoDetails(i) {
 }
 
 
-function disableEnableClasses() {
+function disableAndHide() {
     document.getElementById('singlepokemon').classList.remove('d-none');
-    document.getElementById('allpokemon').classList.add('hidden-bg');   
-    document.getElementById('allpokemon').classList.add('disable-div');  
-    document.getElementById('more-poke-button').classList.add('hidden-bg');
-    document.getElementById('more-poke-button').classList.add('disable-div'); 
-    document.getElementById('nav-header').classList.add('hidden-bg');
-    document.getElementById('nav-header').classList.add('disable-div');
+    hide();
+    disableDiv();
 }
 
 
 function closeSingle() {
     document.getElementById(`singlepokemon`).classList.add('d-none');
-    document.getElementById('allpokemon').classList.remove('hidden-bg');   
-    document.getElementById('allpokemon').classList.remove('disable-div');   
-    document.getElementById('more-poke-button').classList.remove('hidden-bg');
-    document.getElementById('more-poke-button').classList.remove('disable-div'); 
-    document.getElementById('nav-header').classList.remove('hidden-bg');
+    show();
+    enableDiv();
+}
+
+function hide() {
+    document.getElementById('allpokemon').classList.add('hidden-bg');  
+    document.getElementById('more-poke-button').classList.add('hidden-bg');
+    document.getElementById('nav-header').classList.add('hidden-bg');
+}
+
+function show() {
+    document.getElementById('allpokemon').classList.remove('hidden-bg');
+    document.getElementById('more-poke-button').classList.remove('hidden-bg'); 
+    document.getElementById('nav-header').classList.remove('hidden-bg');  
+}
+
+function disableDiv() {
+    document.getElementById('allpokemon').classList.add('disable-div');     
+    document.getElementById('more-poke-button').classList.add('disable-div');    
+    document.getElementById('nav-header').classList.add('disable-div');
+}
+
+function enableDiv() {
+    document.getElementById('allpokemon').classList.remove('disable-div');    
+    document.getElementById('more-poke-button').classList.remove('disable-div');    
     document.getElementById('nav-header').classList.remove('disable-div');
 }
 
@@ -125,13 +142,13 @@ function clearInput() {
 }
 
 
-
 function searchPokemon() {
     let input = document.getElementById('inputfield').value; 
     input = input.toLowerCase(); 
     let cardContent = document.getElementById('allpokemon');
     cardContent.innerHTML = '';
     filterByName(input, cardContent);
+    hideMorePokeButton();
 }
 
 
@@ -145,6 +162,16 @@ function filterByName(input, cardContent) {
         cardContent.classList.add('d-none');
         }
     }   
+}
+
+function hideMorePokeButton() {
+    let input = document.getElementById('inputfield').value;
+    let button = document.getElementById('more-poke-button');
+    if (!input.length <= 0) {
+        button.style.display = 'none';
+    } else {
+        button.style.display = 'flex';
+    }
 }
 
 
