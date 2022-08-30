@@ -302,7 +302,7 @@ h1 {
 .single-pokemon {
     z-index: 99;
     position: fixed;
-    top: 9%;
+    top: 7%;
     width: 600px;
     box-shadow: -1px 12px 15px 2px rgba(0, 0, 0, 0.3);
     border-radius: 40px;
@@ -383,6 +383,17 @@ h1 {
     padding-left: 25px;
     width: 90%;
     height: 83%;
+}
+
+.body-stats-div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 8px;
+}
+
+.body-stats {
+    padding: 5px;
 }
 
 

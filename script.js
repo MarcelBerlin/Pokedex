@@ -1,11 +1,11 @@
 let allPokemon = [];
 let currentPokemon;
 let offset = 1;
-let pokemonNumber = 31;
+let pokemonLimit = 31;
 let maxPokemonNumber = 990;
 
 async function loadPokemon() {
-    for (let i = offset; i < pokemonNumber; i++) {
+    for (let i = offset; i < pokemonLimit; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
         let res = await fetch(url);
         currentPokemon = await res.json();
@@ -16,9 +16,13 @@ async function loadPokemon() {
 }
 
 async function load30MorePokemon() {
-    pokemonNumber += 30;
+    pokemonLimit += 30;
     offset += 30;
     await loadPokemon();
+}
+
+async function loadPokeByScroll() {
+
 }
 
 
@@ -179,7 +183,9 @@ function linkPokeDetails(i) {
     let singlePokeName = firstLetter(currentPokemon['name']);
     let pokeID = currentPokemon['id'];
     let pokeImg = currentPokemon['sprites']['other']['official-artwork']['front_default'];
-    document.getElementById('singlepokemon').innerHTML = showSinglePokemon(i, singlePokeName, pokeID, pokeImg);
+    let pokeHeight = currentPokemon['height'];
+    let pokeWeight = currentPokemon['weight'];
+    document.getElementById('singlepokemon').innerHTML = showSinglePokemon(i, singlePokeName, pokeID, pokeImg, pokeHeight, pokeWeight);
     loadSinglePokeClasses(i);
 }
 

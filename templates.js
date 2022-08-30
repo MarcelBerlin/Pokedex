@@ -33,7 +33,7 @@ function pokeInfo(i, j, info) {
 }
 
 
-function showSinglePokemon(i, singlePokeName, pokeID, pokeImg) {
+function showSinglePokemon(i, singlePokeName, pokeID, pokeImg, pokeHeight, pokeWeight) {
     return /*html*/ `
     
     <div id="singleCard${i}" class="singleCard">
@@ -57,6 +57,10 @@ function showSinglePokemon(i, singlePokeName, pokeID, pokeImg) {
                 <div id="singlePoke-classes${i}" class="types-container"></div>
                 <div class="singlePoke-img">
                 <img id="pokemonImage" src="${pokeImg}">
+                </div>
+                <div class="body-stats-div">
+                    <span class="body-stats" id="height">Height: ${pokeHeight}</span>
+                    <span class="body-stats" id="weight">Weight: ${pokeWeight}</span>
                 </div>
             </div>
         </div>
