@@ -212,7 +212,7 @@ h1 {
 .pokemon-card img {
     position: absolute;
     bottom: 20px;
-    right: 5px;
+    right: 20px;
     width: 48%;
 }
 
