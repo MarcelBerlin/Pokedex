@@ -1,8 +1,8 @@
 let allPokemon = [];
 let currentPokemon;
 let offset = 1;
-let pokemonLimit = 31;
-let maxPokemonNumber = 990;
+let pokemonLimit = 21;
+
 
 async function loadPokemon() {
     for (let i = offset; i < pokemonLimit; i++) {
@@ -13,17 +13,24 @@ async function loadPokemon() {
         allPokemon.push(currentPokemon);
         await renderPokemonCard(currentPokemon, i);
     }
+    window.addEventListener('scroll', ScrollForMorePokemon);
 }
 
-async function load30MorePokemon() {
-    pokemonLimit += 30;
-    offset += 30;
-    await loadPokemon();
-}
 
-async function loadPokeByScroll() {
-
-}
+const ScrollForMorePokemon = async () => {
+    if (window.scrollY + window.innerHeight >= document.body.clientHeight) {
+        for (let i = pokemonLimit; i < pokemonLimit + 20; i++) {
+            let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+            let res = await fetch(url);
+            currentPokemon = await res.json();
+            console.log(currentPokemon);
+            allPokemon.push(currentPokemon);
+            await renderPokemonCard(currentPokemon, i);
+        }
+        pokemonLimit += 20;
+        offset += 20;
+    }      
+};
 
 
 async function renderPokemonCard(currentPokemon, i) {
@@ -58,13 +65,13 @@ async function showPokemonDetails(i) {
 }
 
 
-async function singlePokemonInfo(i) {   
+async function singlePokemonInfo(i) {
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
     currentPokemon = await response.json();
     disableAndHide();
-    linkPokeDetails(i); 
+    linkPokeDetails(i);
     loadInfoDetails(i);
-    checkSlideNumber(i);   
+    checkSlideNumber(i);
 }
 
 
@@ -90,7 +97,7 @@ function loadInfoDetails(i) {
         let info = stats[j];
         infoStats.innerHTML += pokeInfo(i, j, info);
         loadProcessbarValue(i, j, info);
-    }    
+    }
 }
 
 
@@ -108,26 +115,22 @@ function closeSingle() {
 }
 
 function hide() {
-    document.getElementById('allpokemon').classList.add('hidden-bg');  
-    document.getElementById('more-poke-button').classList.add('hidden-bg');
+    document.getElementById('allpokemon').classList.add('hidden-bg');   
     document.getElementById('nav-header').classList.add('hidden-bg');
 }
 
 function show() {
-    document.getElementById('allpokemon').classList.remove('hidden-bg');
-    document.getElementById('more-poke-button').classList.remove('hidden-bg'); 
-    document.getElementById('nav-header').classList.remove('hidden-bg');  
+    document.getElementById('allpokemon').classList.remove('hidden-bg');    
+    document.getElementById('nav-header').classList.remove('hidden-bg');
 }
 
 function disableDiv() {
-    document.getElementById('allpokemon').classList.add('disable-div');     
-    document.getElementById('more-poke-button').classList.add('disable-div');    
+    document.getElementById('allpokemon').classList.add('disable-div');   
     document.getElementById('nav-header').classList.add('disable-div');
 }
 
 function enableDiv() {
-    document.getElementById('allpokemon').classList.remove('disable-div');    
-    document.getElementById('more-poke-button').classList.remove('disable-div');    
+    document.getElementById('allpokemon').classList.remove('disable-div');    ;
     document.getElementById('nav-header').classList.remove('disable-div');
 }
 
@@ -135,20 +138,20 @@ function enableDiv() {
 function openSearchField() {
     let search = document.querySelector('.search');
     search.classList.toggle('active');
-}    
+}
 
 function clearInput() {
     document.getElementById('inputfield').value = '';
     document.getElementById('allpokemon').innerHTML = '';
     allPokemon = [];
-    offset = 1;    
+    offset = 1;
     loadPokemon();
 }
 
 
 function searchPokemon() {
-    let input = document.getElementById('inputfield').value; 
-    input = input.toLowerCase(); 
+    let input = document.getElementById('inputfield').value;
+    input = input.toLowerCase();
     let cardContent = document.getElementById('allpokemon');
     cardContent.innerHTML = '';
     filterByName(input, cardContent);
@@ -157,15 +160,15 @@ function searchPokemon() {
 
 
 function filterByName(input, cardContent) {
-    for (let i = 0; i < allPokemon.length; i++) {        
+    for (let i = 0; i < allPokemon.length; i++) {
         currentPokemon = allPokemon[i];
-        let Name = allPokemon[i]['name']; 
+        let Name = allPokemon[i]['name'];
         if (Name.includes(input)) {
             renderPokemonCard(currentPokemon, i + 1)
         } else {
-        cardContent.classList.add('d-none');
+            cardContent.classList.add('d-none');
         }
-    }   
+    }
 }
 
 function hideMorePokeButton() {
