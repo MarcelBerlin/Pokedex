@@ -9,7 +9,6 @@ async function loadPokemon() {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
         let res = await fetch(url);
         currentPokemon = await res.json();
-        console.log(currentPokemon);
         allPokemon.push(currentPokemon);
         await renderPokemonCard(currentPokemon, i);
     }
@@ -23,7 +22,6 @@ const ScrollForMorePokemon = async () => {
             let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
             let res = await fetch(url);
             currentPokemon = await res.json();
-            console.log(currentPokemon);
             allPokemon.push(currentPokemon);
             await renderPokemonCard(currentPokemon, i);
         }
@@ -59,7 +57,6 @@ async function showPokemonDetails(i) {
     let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
     let response = await fetch(url);
     currentPokemon = await response.json();
-    console.log(currentPokemon);
     document.getElementById('allpokemon').classList.add('d-none');
     await singlePokemonInfo(i);
 }
@@ -171,16 +168,6 @@ function filterByName(input, cardContent) {
     }
 }
 
-function hideMorePokeButton() {
-    let input = document.getElementById('inputfield').value;
-    let button = document.getElementById('more-poke-button');
-    if (!input.length <= 0) {
-        button.style.display = 'none';
-    } else {
-        button.style.display = 'flex';
-    }
-}
-
 
 function linkPokeDetails(i) {
     let singlePokeName = firstLetter(currentPokemon['name']);
@@ -217,6 +204,7 @@ function checkSlideNumber(i) {
     if (i == 1) {
         document.getElementById('slideDown').disabled = true;
         document.getElementById('slideDown').style.opacity = 0.25;
+        document.getElementById('slideDown').style.pointerEvents = 'none';
     } else {
         document.getElementById('slideDown').disabled = false;
     }
