@@ -49,7 +49,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-around;      
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(65, 65, 65, 0.295);
 }
 
 
@@ -226,6 +226,30 @@ h1 {
     flex-direction: column;
 }
 
+.buttonPosition{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#morePokeButton {
+    cursor: pointer;
+    font-weight: bold;
+    width: 200px;
+    height: 35px;
+    border-radius: 10px;
+    transition: all 100ms ease-in-out;
+    background: rgb(226, 226, 226);    
+    font-family: 'Grandstander', sans-serif;
+}
+
+#morePokeButton:hover {
+    transform: scale(1.1);
+    box-shadow: -2px 3px 9px 2px rgba(0, 0, 0, 0.4);
+    transition: all 100ms ease-in-out;
+}
 
 /* Single Pokemon Container */
 
